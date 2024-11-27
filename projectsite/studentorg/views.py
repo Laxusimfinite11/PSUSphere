@@ -6,10 +6,12 @@ from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm, Progr
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from typing import Any
 from django.db.models.query import QuerySet
 from django.db.models import Q
+
 
 # Create your views here.
 
@@ -187,9 +189,16 @@ class CollegeCreateView(CreateView):
 
 class CollegeUpdateView(UpdateView):
     model = College
-    form_class = CollegeForm
-    template_name = 'college_edit.html'
+    form_class = "__all__"
+    context_object_name = "college"
+    template_name = "college_edit.html"
     success_url = reverse_lazy('college-list')
+
+    def form_valid(self, form):
+        college_name = form.instance.college_name
+        messages.success(self.request, f'{college_name} has been successfully updated.')
+        
+        return super().form_valid(form)
 
 class CollegeDeleteView(DeleteView):
     model = College
