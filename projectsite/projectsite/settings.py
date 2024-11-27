@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8wtpuzm%=mwifor5glm=2=^u4^u=41h9%=6v4_apy42hl53qf8'
+SECRET_KEY = 'django-insecure-f!2h*y_-&(m%b30db!az1a=w3k+m_b8zvhzr0df5n6cj5f##*!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['arjay1412.pythonanywhere.com','psusphere.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['lexustaladro.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'projectsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,8 +72,8 @@ TEMPLATES = [
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = (BASE_DIR / 'static',
-                    )
+STATICFILES_DIRS = (BASE_DIR / 'static',)
+
 
 WSGI_APPLICATION = 'projectsite.wsgi.application'
 
@@ -124,6 +124,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
