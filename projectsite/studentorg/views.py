@@ -6,6 +6,7 @@ from studentorg.forms import OrganizationForm, OrgMemberForm, StudentForm, Progr
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from typing import Any
 from django.db.models.query import QuerySet
@@ -165,6 +166,7 @@ class ProgramDeleteView(DeleteView):
 #    form_class = ProgramForm
     template_name = 'program_del.html'
     success_url = reverse_lazy('program-list')
+    
 
 class CollegeList(ListView):
     model = College
@@ -185,14 +187,36 @@ class CollegeCreateView(CreateView):
     template_name = 'college_add.html'
     success_url = reverse_lazy('college-list')
 
+    def form_valid(self, form):
+        college_name = form.instance.college_name
+        messages.success(self.request, f'{college_name} has been successfully added.')
+
+        
+        return super().form_valid(form)
+
 class CollegeUpdateView(UpdateView):
     model = College
     form_class = CollegeForm
     template_name = 'college_edit.html'
     success_url = reverse_lazy('college-list')
 
+    def form_valid(self, form):
+        college_name = form.instance.college_name
+        messages.success(self.request, f'{college_name} has been successfully updated.')
+
+        
+        return super().form_valid(form)
+
+
 class CollegeDeleteView(DeleteView):
     model = College
-#   form_class = CollegeForm
+    form_class = CollegeForm
     template_name = 'college_del.html'
     success_url = reverse_lazy('college-list')
+
+    def form_valid(self, form):
+        college_name = form.instance.college_name
+        messages.success(self.request, f'{college_name} has been successfully deleted.')
+
+        
+        return super().form_valid(form)
